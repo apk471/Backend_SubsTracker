@@ -5,10 +5,12 @@ import jwt from "jsonwebtoken";
 import User from "../models/user.models.js";
 
 export const signUp = async (req, res, next) => {
+  // console.log("Sign up request received");
   const session = await mongoose.startSession();
   session.startTransaction();
   try {
     const { name, email, password } = req.body;
+    // console.log("Sign up request received:", { name, email });
 
     const exsistingUser = await User.findOne({ email });
     if (exsistingUser) {
